@@ -20,7 +20,14 @@ namespace DesafioProjetoHospedagem.Models
             // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
                 // *IMPLEMENTE AQUI*
 
-            this.Suite.Capacidade => hospedes.Count? Hospedes = hospedes : throw new ArgumentException("Numero de hospides excete o limite da suite");
+            if(this.Suite.Capacidade >= hospedes.Count)
+            {
+                Hospedes = hospedes;  
+            }
+            else 
+            {
+                throw new ArgumentException("Numero de hospides excete o limite da suite");
+            }
         }
 
         public void CadastrarSuite(Suite suite)
@@ -44,9 +51,9 @@ namespace DesafioProjetoHospedagem.Models
 
             // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
             // *IMPLEMENTE AQUI*
-            if (valor => 10)
+            if (this.DiasReservados >= 10)
             {
-                valor *= 0.90;
+                valor = valor*0.90M;
             }
 
             return valor;
